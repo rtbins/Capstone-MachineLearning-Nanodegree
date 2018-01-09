@@ -1,8 +1,9 @@
-# Stock Price Indicator with Recurrent neural nets
-## Machine Learning Engineer Nanodegree
+# Machine Learning Engineer Nanodegree
 ## Capstone Proposal
 Rohit Gupta  
 January 8th, 2018
+
+## Stock Price predictor with Recurrent neural nets
 
 ### Domain Background
 
@@ -56,12 +57,11 @@ The values for R2 range from 0 to 1, which captures the percentage of squared co
 
 ### Project Design
 Following are the proposed steps to achieve above
-#### Setup the project
-Install the following components  
-* Anaconda
-* IPython notebook
-* Essential libraries (tensorflow, keras, pandas, matplotlib etc)
-* setup git project
+#### Setup the project (required installations)
+* Anaconda  
+* IPython notebook  
+* Essential libraries (tensorflow, keras, pandas, matplotlib etc)  
+* setup git project  
 
 #### Load and transform data
 * Download target stock and benchmark indices historical data from yahoo finance (API request are no longer supported).
