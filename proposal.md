@@ -14,7 +14,7 @@ Quantitive strategies of hedge funds have received considerable returns for inve
 This work is towards utilizing Recurrent Neural Nets to predict the stock prices (for a 7 day period). The aim here is to leverage modeling abilities of neural networks for time series forecasting[3]. Time series forecasting is a difficult type of predictive modeling problem, as it has added complexity of sequence dependence among the input variables[7]. Recurrent neural networks have been quite successful in modeling time series data. LSTM is a type of RNN which can model short-term memory over a long period of time. Using LSTM enables us to model sequence dependence as short-term memory and incorporate it as a feature in our model.
 
 ### Problem Statement
-Project's aim is to give a 7 day prediction (forecast) for stock prices. The model should satisfy,
+Project's aim is to give a 7 day prediction (forecast) for stock prices. This is a regression problem. The model should satisfy,
 
 
 Category | Description
@@ -26,7 +26,7 @@ Category | Description
 The solution will be 7 predicted prices for each trading day within 7 trading days after the last date in the input date range. These prices will be compared with the actual price.
 
 ### Datasets and Inputs
-All of the necessary data for the project will come from Yahoo Finance website and dataset will be included in the project for ease of reproducibility. The input to the program will be a CSV file having historical data for a stock ticker symbol.
+All of the necessary data for the project will come from Yahoo Finance website and dataset will be included in the project for ease of reproducibility. The input to the program will be a CSV file having historical data for a stock ticker symbol. The data will be of range 2007-2010 and around one trading year of data will be used for training.
 
 Attribute (**Target Stock**) | Description
 --- | --- 
@@ -41,14 +41,12 @@ Attribute | Description
 **n day Rolling mean** |  n=20, to smooth out short-term fluctuations and highlight longer-term trends or cycles[5]. 
 
 ### Solution Statement
-The expected solution will be a model having the capability to give a forecast for 7 days after the last date in the input. We will compare the 7 predicted prices with the actual adjusted close prices and evaluate the model using R^2 metric. The code will be implemented in python. For LSTM we are going to use Keras. Keras is a high-level neural networks API, written in Python andTime Series Forecasting Based on Augmented Long
+The expected solution is a model having the capability to accurately predict prices for a 7 days range, of a stock. We will compare the 7 predicted prices with the actual adjusted close prices and evaluate the model using R^2 metric. The code will be implemented in python. For LSTM we are going to use Keras. Keras is a high-level neural networks API, written in Python andTime Series Forecasting Based on Augmented Long
 Short-Term MemoryTime Series Forecasting Based on Augmented Long
 Short-Term Memory capable of running on top of TensorFlow[6]. Additionally, we will use pandas to load stock data into dataframe. For exploratory analysis, we will use numpy and matplotlib.
 
 ### Benchmark Model
-For the benchmark, we will use Linear Regression model. Additionally, the benchmark given in the project outline was +/- 5% of the stock price 7 days out. Following two will be our primary benchmark,
-1. Linear regression model
-2. RMSE of 5%
+For the benchmark, we will use a simple Linear Regression model. We will use Scikit-Learn for training and optimizing this model.
 
 ### Evaluation Metrics
 It is important to measure the quality of a model by quantifying its performance. For this, we are going to use a R^2 metric which is also known as the coefficient of determination. We will use R^2 to predict the performance of our model. RMSE measures the average deviation of the predictions from the actual price. R^2 value reflects how well is a model performing[8].  
@@ -68,7 +66,7 @@ Following are the proposed steps to achieve above
 * Load and process the data into pandas dataframe.
 * Filter data for a given range of date.
 * Normalize the data, and append to the main dataframe.
-* Do a training testing split.
+* As our data is a time series, we do a train test split using TimeSeriesSplit of sklearn. This cross validation method is a variation of kFold, it provides k fold as train set and (k+1)th fold as test set.
 
 #### Exploratory analysis
 Do an exploratory analysis of data to understand and reflect upon the important statistics of stock data.
