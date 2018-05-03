@@ -1,0 +1,4 @@
+{
+    "editor.quickSuggestionsDelay": 3000,
+    "python.pythonPath": "/home/machine/anaconda3/envs/mlnd_capstone/bin/python"
+}
