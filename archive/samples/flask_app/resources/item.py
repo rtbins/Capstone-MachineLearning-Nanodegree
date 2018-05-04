@@ -14,6 +14,12 @@ class Item(Resource):
         required=True,
         help="this field cannot be left blank"
     )
+    parser.add_argument(
+        "store_id",
+        type=float,
+        required=True,
+        help="An item needs to belong to a store"
+    )
 
     @jwt_required()
     def get(self, name):
@@ -29,6 +35,11 @@ class Item(Resource):
             return {"message": "Item already exists"}, 403
         else:
             data = Item.parser.parse_args()
-            item = ItemModel(name, data["price"])
+            item = ItemModel(name, **data)
             item.save_to_db()
             return item.json(), 200
+
+
+class ItemList(Resource):
+    def get(self):
+        return {"items": list(map(lambda x: x.json(), ItemModel.query.all()))}

@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
+from db import db
 
-from resources import Item, UserRegister
+from resources import Item, UserRegister, ItemList, Store, StoreList
 
 from security import authenticate, identity
 
@@ -20,10 +21,16 @@ api = Api(app)
 
 JWT(app, authenticate, identity)
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 
 api.add_resource(Item, "/item/<string:name>")
 api.add_resource(UserRegister, "/userregister" )
+api.add_resource(ItemList, "/items" )
+api.add_resource(Store, "/store" )
+api.add_resource(StoreList, "/stores" )
 
 if __name__ == "__main__":
     from db import db
