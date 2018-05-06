@@ -10,8 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.2.28",
-    "angular-nvd3": "^1.0.8",
-    "d3": "^3.3.13",
-    "nvd3": "^1.7.1"
+    "underscore": "^1.9.0"
   }
 }

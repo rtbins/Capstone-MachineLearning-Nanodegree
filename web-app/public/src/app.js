@@ -1,1 +1,1 @@
-var myApp = angular.module('myApp', ['nvd3']);
+var myApp = angular.module('myApp', []);

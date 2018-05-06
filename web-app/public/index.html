@@ -8,12 +8,12 @@
     <meta charset="utf-8">
     <!-- it's important for d3.js -->
     <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/d3/d3.js"></script>
-    <script src="node_modules/nvd3/build/nv.d3.js"></script>
-    <!-- or use another assembly -->
-    <script src="node_modules/angular-nvd3/dist/angular-nvd3.js"></script>
-    <link rel="stylesheet" href="node_modules/nvd3/build/nv.d3.css">
-   
+    <script src="node_modules/underscore/underscore-min.js"></script>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      
+    </script>
 
     <script src="src/app.js"></script>
     <script src="src/controllers/lineChartCtrl.js"></script>
@@ -22,7 +22,7 @@
 <body>
     <div ng-app="myApp">
         <div ng-controller="lineChartCtrl">
-            <nvd3 options="options" data="data"></nvd3>
+            <div id="chart_div" style="width: 900px; height: 500px"></div>
         </div>
     </div>
 
