@@ -29,7 +29,7 @@ def create_tables():
 api.add_resource(Item, "/item/<string:name>")
 api.add_resource(UserRegister, "/userregister" )
 api.add_resource(ItemList, "/items" )
-api.add_resource(Store, "/store" )
+api.add_resource(Store, "/store/<string:name>" )
 api.add_resource(StoreList, "/stores" )
 
 if __name__ == "__main__":

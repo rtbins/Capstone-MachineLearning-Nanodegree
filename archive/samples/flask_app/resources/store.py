@@ -10,11 +10,12 @@ class Store(Resource):
             return {"message": "store already exists"}
         store = StoreModel(name)
         store.save_to_db()
+        return store.json()
 
     def delete(self, name):
         pass
 
 
 class StoreList(Resource):
-    def get(self, name):
+    def get(self):
         return {"stores": list(map(lambda x: x.json(), StoreModel.query.all()))}
