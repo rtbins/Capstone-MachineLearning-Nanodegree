@@ -77,10 +77,7 @@ myApp.controller('lineChartCtrl', function ($scope, $http) {
     /*Random Data Generator */
     $scope.sinAndCos = function () {
 
-        $http({
-            method: 'GET',
-            url: 'http://127.0.0.1:5000/stockData/rohit'
-        }).
+        $http.get('http://localhost:5000/stockData/rohit').
         then(function (data, status, headers, config) {
                 var stock = [];
                 data = data["data"]
