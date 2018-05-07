@@ -3,3 +3,6 @@
 **.db
 **.vscode/*
 **/node_modules/*
+**.tmp
+**bower_components
+**setting.json
