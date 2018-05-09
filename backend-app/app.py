@@ -4,7 +4,7 @@ from flask_jwt import JWT
 from db import db
 from flask_cors import CORS
 
-from resources import UserRegister, StockData
+from resources import UserRegister, StockData, Predict
 
 from security import authenticate, identity
 
@@ -31,6 +31,10 @@ def create_tables():
 
 api.add_resource(StockData, "/stockData/<string:name>")
 api.add_resource(UserRegister, "/userregister" )
+
+# prediction models
+# date details should be in header
+api.add_resource(Predict, "/predict/<string:model>")
 
 if __name__ == "__main__":
     from db import db
