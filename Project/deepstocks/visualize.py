@@ -37,7 +37,7 @@ def multiple_plots(axes, df, fig_dict = []):
         i += 1
 
 
-def plot_predictions(axes, data):
+def plot_predictions(axes, data, stock_name):
     #plt.figure(figsize=(15, 5))
     #plt.subplot(1,2,1);
     ft = 0
@@ -67,7 +67,7 @@ def plot_predictions(axes, data):
                     y_train_pred.shape[0]+y_valid_pred.shape[0]+y_test_pred.shape[0]),
             y_test_pred[:,ft], color='green', label='test prediction')
 
-    axes[0].set_title('Historical and predicted stock prices')
+    axes[0].set_title('Historical and predicted stock prices ({})'.format(stock_name))
     axes[0].set_xlabel('Time [days]')
     axes[0].set_ylabel('Normalized Price')
     axes[0].legend(loc='best');
@@ -80,7 +80,7 @@ def plot_predictions(axes, data):
     axes[1].plot(np.arange(y_train_pred.shape[0], y_train_pred.shape[0]+y_test_pred.shape[0]),
             y_test_pred[:,ft], color='green', label='test prediction')
 
-    axes[1].set_title('Forecasted stock price')
+    axes[1].set_title('Forecasted stock price ({})'.format(stock_name))
     axes[1].set_xlabel('Time [days]')
     axes[1].set_ylabel('Normalized price')
     axes[1].legend(loc='best')
