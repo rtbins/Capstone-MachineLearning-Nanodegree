@@ -35,4 +35,12 @@ api.add_resource(StoreList, "/stores" )
 if __name__ == "__main__":
     from db import db
     db.init_app(app)
-    app.run(debug=True)
+    app.run(debug=True)start_date = datetime.datetime(2012, 1, 1)
+end_date = datetime.datetime(2017, 1, 1)
+ford = pd.read_csv('Ford_Stock.csv', index_col='Date', parse_dates=True)
+
+ford = ford.loc[(ford.index >= start_date) & (ford.index <= end_date)]start_date = datetime.datetime(2012, 1, 1)
+end_date = datetime.datetime(2017, 1, 1)
+ford = pd.read_csv('Ford_Stock.csv', index_col='Date', parse_dates=True)
+
+ford = ford.loc[(ford.index >= start_date) & (ford.index <= end_date)]
