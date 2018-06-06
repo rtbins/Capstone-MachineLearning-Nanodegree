@@ -6,6 +6,7 @@ class RNNConfig():
     n_layers = 3
     learning_rate = 0.002
     batch_size = 50
+    # epoch count represent a full training paa within the loop
     n_epochs = 100
     window = 10
     valid_ratio = 15

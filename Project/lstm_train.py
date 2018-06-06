@@ -42,7 +42,7 @@ def train_rnn(config, features, data):
                                                 
     # run graph
     with tf.Session() as sess: 
-        
+        # initialize the value of the graph with default values
         sess.run(tf.global_variables_initializer())
         
         iterations = int(n_epochs*train_set_size/batch_size)
@@ -52,9 +52,9 @@ def train_rnn(config, features, data):
         for _x, _y in get_next_batch(batch_size, x_train, y_train, iterations):
             
             x_batch, y_batch =  _x, _y# fetch the next training batch
-            
+            # create a dict to feed into graph
             feed_dict = {X: x_batch, y:y_batch, keep_prob: 1}
-            
+            # training the data using AdamOptimizer function
             utils.train_neural_network(sess, optimizer, feed_dict)
             
             
