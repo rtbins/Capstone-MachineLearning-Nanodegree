@@ -3,17 +3,17 @@ import numpy as np
 import os
 
 
+file_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+
+
 def symbol_to_path(symbol, base_dir="data"):
-    '''
-        declares the base directory inside which data resides
-    '''
+    '''declares the base directory inside which data resides'''
+    base_dir = os.path.join(file_dir, base_dir)
     return os.path.join(base_dir, "{}.csv".format(str(symbol)))
 
 
 def get_rolling_mean(values, window):
-    '''
-        outputs rolling mean for a given series and window size
-    '''
+    '''outputs rolling mean for a given series and window size'''
     return pd.Series.rolling(values, window=window).mean()
 
 
@@ -25,7 +25,7 @@ def get_csv_data(symbol, start_date, end_date, window=10):
             attributes of a stock
     '''
 
-    dates = pd.date_range( start_date, end_date)
+    dates = pd.date_range(start_date, end_date)
 
     df = pd.DataFrame(index=dates)
 
@@ -48,19 +48,18 @@ def get_csv_data(symbol, start_date, end_date, window=10):
     return df
 
 
-
 def get_next_batch(batch_size, x, y, counts):
     index_in_epoch = 0
     perm_array = np.arange(x.shape[0])
     np.random.shuffle(perm_array)
-   
+
     for i in range(counts):
         start = index_in_epoch
         index_in_epoch += batch_size
 
         if index_in_epoch > x.shape[0]:
-            np.random.shuffle(perm_array) # shuffle permutation array
-            start = 0 # start next epoch
+            np.random.shuffle(perm_array)  # shuffle permutation array
+            start = 0  # start next epoch
             index_in_epoch = batch_size
 
         end = index_in_epoch

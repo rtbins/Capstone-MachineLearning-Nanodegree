@@ -1,12 +1,10 @@
 import tensorflow as tf
 
 def predict(config, x):
-    """
-    Test the saved model against the test dataset
-    """
+    """Test the saved model against the test dataset"""
 
     n_steps = config.n_steps
-    save_model_path = config.save_model_path + '__' + config.stock_name
+    save_model_path = config.save_model_path
     loaded_graph = tf.Graph()
 
     with tf.Session(graph=loaded_graph) as sess:
@@ -15,9 +13,9 @@ def predict(config, x):
         loader.restore(sess, save_model_path)
 
         # Get Tensors from loaded model
-        loaded_x = loaded_graph.get_tensor_by_name('x:0')
+        loaded_x = loaded_graph.get_tensor_by_name('inputs/x:0')
         loaded_keep_prob = loaded_graph.get_tensor_by_name('keep_prob:0')
-        loaded_logits = loaded_graph.get_tensor_by_name('logits:0')
+        loaded_logits = loaded_graph.get_tensor_by_name('logits/logits:0')
         
         
         _logits = loaded_logits[:,n_steps-1,:]

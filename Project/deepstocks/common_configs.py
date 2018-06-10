@@ -1,19 +1,36 @@
+import os
 
-class RNNConfig():
-    n_inputs = 2
-    n_neurons = 200
-    n_outputs = 2
-    n_layers = 3
-    learning_rate = 0.002
-    batch_size = 50
-    # epoch count represent a full training paa within the loop
-    n_epochs = 100
-    window = 10
-    valid_ratio = 15
-    test_ratio = 15
-    seq_len = 20
-    n_steps = seq_len - 1
-    save_model_path = './checkpoints/forecast_model'
+
+file_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+
+
+class RNNConfig:
+    def __init__(self, stock_name, cell='lstm'):
+        self.stock_name = stock_name
+        # represents number of features being passed to model
+        self.n_inputs = 2
+        self.n_neurons = 156
+        self.n_outputs = 2
+        self.n_layers = 2
+        self.learning_rate = 0.0008
+        self.batch_size = 64
+        # epoch count represent a full training pass within the loop
+        self.n_epochs = 64
+        # window to preprocess the data
+        self.window = 10
+        self.valid_ratio = 15
+        self.test_ratio = 15
+        # is the size of the batch
+        self.seq_len = 20
+        self.n_steps = self.seq_len - 1
+        # gru, basic, lstm
+        self.rnn_type = cell
+        # path locations
+        self.log_path = os.path.join(file_dir, ('logs/' + cell))
+        self.log_path_test = os.path.join(self.log_path, 'train')
+        self.log_path_train = os.path.join(self.log_path, 'test')
+        self.save_model_path = os.path.join(
+            file_dir, ('checkpoints/' + cell + '/forecast_model' + '__' + self.stock_name))
 
 
 class Stock_names:

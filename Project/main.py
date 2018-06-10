@@ -28,24 +28,33 @@ def train_test_predict(config, stock_names, features, isTrain):
 
     if isTrain:
         train_rnn(config, features, data)
-
         test_model(data[4], data[5], config)
 
     data.append(predict(config, data[0]))
     data.append(predict(config, data[4]))
     data.append(predict(config, data[2]))
 
-    fig, axes = plt.subplots(nrows=1, ncols=2)
-    plot_predictions(axes, data)
+    _, axes = plt.subplots(nrows=1, ncols=2)
+    plot_predictions(axes, data, config.stock_name)
     plt.show()
     plt.tight_layout()
 
 if __name__ == '__main__':
+    import os
+    import shutil
+    # Turn off TensorFlow warning messages in program output
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
     stock_name = sys.argv[1]
-    isTrain = sys.argv[2]
-    config = RNNConfig()
-    config.stock_name = stock_name
+    isTrain = 'True' == sys.argv[2]
+    print(isTrain)
+
+    # set the configs for model
+    # gru, basic, lstm
+    config = RNNConfig(stock_name, 'gru')
+    # remove old tensorboard logs
+    if os.path.isdir(config.log_path):
+        shutil.rmtree(config.log_path)
     stock_names = Stock_names()
     features = Features()
 
